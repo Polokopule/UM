@@ -63,7 +63,7 @@ localStorage.setItem('thisPost',href);
 var commentCount = Object.keys(data).length;
              var formId = "CommentForm" + commentCount;
                       
-                    if(dis.length  > 100) {
+                    if(dis.length   < 100) {
                         $(".txx").css(
              {
              	    "font-size":"20px"
