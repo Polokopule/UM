@@ -24,9 +24,14 @@
                     
                     var title = value.title;
                     var dis = value.dis;
-var paragraphs = dis.split(/\n{2,}/); // Split by 2 or more consecutive line breaks
-			  // Split by newline to identify paragraphs
-    var modifiedDis = paragraphs.join('<br><br>');
+ // Split 'dis' into paragraphs based on user-inserted line breaks
+    var paragraphs = dis.split(/\n+/); // Split by one or more consecutive line breaks
+
+    // Process paragraphs to preserve user's line breaks and add '<br><br>' between them
+    var modifiedDis = paragraphs.map(paragraph => {
+        // Trim each paragraph to remove leading/trailing whitespace
+        return paragraph.trim();
+    }).join('<br><br>');
 
     // Update the 'dis' variable with the modified content
     dis = modifiedDis;
