@@ -24,6 +24,12 @@
                     
                     var title = value.title;
                     var dis = value.dis;
+
+			 var paragraphs = dis.split('\n'); // Split by newline to identify paragraphs
+    var modifiedDis = paragraphs.join('<br><br>');
+
+    // Update the 'dis' variable with the modified content
+    dis = modifiedDis;
                     var id = value.id;
                     
                     var time = value.time;
