@@ -159,7 +159,7 @@ $.ajax({
        var htm = `
                                 <div class="Someone">
                                     <div class="Spp"
-                                    style="background:${bg};">${Fletter} </div>
+                                    style="background:${bg}; display: flex;justify-content:center;align-items:center;">${Fletter} </div>
 	</div>
                                     <span><b>${byUser} </b> <p>${byText}</p></span>
                                 </div>`;
