@@ -157,7 +157,7 @@ $.ajax({
                var bg= comment.bg;
     
        var htm = `
-                                <div class="Someone">
+                                <div class="Someone" style="display: flex;">
                                     <div class="Spp"
                                     style="background:${bg}; display: flex;justify-content:center;align-items:center;">${Fletter} </div>
 	</div>
