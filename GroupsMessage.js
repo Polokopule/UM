@@ -1,8 +1,6 @@
 
 function SendMsg(id, GName) {
-      alert(GName);
-    alert("Sending message to group with ID: " + id);
-    var userN = localStorage.getItem("user");
+       var userN = localStorage.getItem("user");
     var uId = localStorage.getItem("id");
     var mid = Math.floor(Math.random() * 100000);
    var input = document.getElementById(id).value;
@@ -21,6 +19,7 @@ function SendMsg(id, GName) {
         contentType: "application/json",
         success: function(response) {
             alert("Message sent");
+              input.value="";
         },
         error: function(error) {
             console.error("Error adding data:", error);
