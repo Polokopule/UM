@@ -62,7 +62,7 @@ $(document).ready(function() {
                         var htm = `
                         <div class="frcard">
                             <div class="frPp">
-                                <img src="img/9t.png" alt="">
+                                <img src="9t.png" alt="">
                             </div>
                             <div class="frDetail">
                                 <a href='#${link}'> Open Group</a>
@@ -74,7 +74,7 @@ $(document).ready(function() {
                         </div>
                         <div id="${link}" class="groupChat">
                             <div class="person" style="background:${value.GbyBg};">
-                                <div class="Gprofile" style="background:#f2f2f2;"> <img src="img/9t.png" alt="" width="20"></div>
+                                <div class="Gprofile" style="background:#f2f2f2;"> <img src="9t.png" alt="" width="20"></div>
                                 <div class="Udetails">
                                     <b>${gN}</b>
                                     <span>You are a ${value.status} in this group</span>
