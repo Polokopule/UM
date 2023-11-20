@@ -65,7 +65,7 @@ var commentCount = Object.keys(data).length;
 		<div class="pp" style="background:${bybg};">${byletter} 
 	</div>
 		<span class="user">
-			<b style="font-weight: bolder;">${username}  <img src="img/5k.png" alt="" width="10px"></b> <i>${time}min  ago - @${idP}</i>
+			<b style="font-weight: bolder;">${username}  <img src="5k.png" alt="" width="10px"></b> <i>${time}min  ago - @${idP}</i>
 			</span>
 		</div>
 		<br>
@@ -159,9 +159,9 @@ $.ajax({
        var htm = `
                                 <div class="Someone">
                                     <div class="Spp"
-                                    style="background:${bg};">${Fletter} 
+                                    style="background:${bg};">${Fletter} </div>
 	</div>
-                                    <span><b>${byUser} | ${postId}(${byUser}) commented to ${idP}</b> <p>${byText}</p></span>
+                                    <span><b>${byUser} </b> <p>${byText}</p></span>
                                 </div>`;
                                 
                       if(idP === postId){
