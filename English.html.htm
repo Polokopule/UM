@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Posting test</title>
+        
+        <style>
+            
+            header {
+   text-align:center;
+    box-shadow:0px 1px 4px rgba(0, 0, 0, 0.5);
+    font-weight:bolder;
+    font-size:28px;
+    background-color:#fff ;
+    padding:1rem;
+}
+
+body {
+    background-color: #eee;
+    font-family:Arial, sans-serif;
+}
+
+center input, center textarea {
+    margin-bottom: 0.5rem;
+    margin-top:0.5rem;
+}
+
+textarea {
+    width:50%;
+    font-family: Arial, sans-serif;
+}
+
+button {
+    text-transform:uppercase;
+    border:none;
+    font-weight:bold;
+    background-color:blue;
+    color:white;
+    padding-left:1rem; padding-right:1rem;
+    padding-top:0.5rem;padding-bottom:0.5rem;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    outline:none;
+    transition:transform 0.13s, color 1s;
+}
+
+button:hover {
+    cursor:pointer ;
+    transform:scale3d(1.1,1.1,1);
+}
+
+button:active {
+    transform:scale3d(0.9,0.9,1);
+    color: lightblue;
+}
+
+.post {
+    background-color:#fff;
+    border-radius:16px;
+    padding:1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.title {
+    font-size:24px;
+    font-weight:bolder;
+}
+
+.time {
+    color:#aaa;
+    font-size:14px;
+}
+
+#posts {
+	width:100%;
+    margin:1.5rem;
+    margin-left:0.25rem; margin-right:0.25rem;
+}
+
+.author {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #aaa;
+    text-align: left;
+    vertical-align: middle;
+}
+
+img {
+    vertical-align: middle;
+}
+
+input {
+    width: 50%;
+}
+
+.user {
+  display: inline-block;
+  margin-left: 0.5rem;
+}
+
+.author .user {
+    vertical-align: middle;
+}
+        </style>
+    </head>
+    <body>
+       <header id="header1">Complaint Site</header>
+       <center><h3>Welcome</h3> 
+       <input type="text" placeholder="Your name here..." id="titlein">
+       <br/>
+       <textarea placeholder="write your complaint here.." rows='5' id="contentin"></textarea><br />
+       <button onclick="post()">Post</button>
+    </center>
+ <center>      <h2>Your post</h2></center>
+
+       <div id="posts">
+           
+       </div>
+
+    
+
+<script>
+
+
+
+window.onload = function load() {
+
+
+const title = document.getElementById("header1");
+}
+
+function post() {
+    let title = document.getElementById("titlein");
+    let content = document.getElementById("contentin");
+    
+    let val_title = title.value
+    let val_content = content.value
+    
+    title.value = ""
+    content.value = ""
+    
+    let output = document.getElementById("posts")
+    
+    if (val_title !== "" && val_content !== "") {
+    
+    let date = new Date()
+    
+    let hours = (date.getHours() < 10) ? `0${date.getHours()}`: date.getHours()
+    let dayofmonth = (date.getDate() < 10) ? `0${date.getDate()}`: date.getDate()
+    let month = (date.getMonth() + 1 < 10) ? `0${date.getMonth() + 1}`: date.getMonth() + 1
+    let year = date.getYear() - 100 + 2000
+    let minutes = (date.getMinutes() < 10) ? `0${date.getMinutes()}`: date.getMinutes()
+    
+    output.innerHTML = "<div class='post'><div class='author'>" + `<img src="apk.png" width="48" height="48"><div class='user'><span>` + name + "</span><br/><span class='time'>" + `${dayofmonth}.${month}.${year}, ${hours}:${minutes}` + "</span></div></div><div class='title'>" + val_title + "</div><br/><div class='content'>" + val_content + "</div></div>" + output.innerHTML
+    }
+}
+
+</script>
+</body>
+</html>

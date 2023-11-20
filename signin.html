@@ -1,0 +1,416 @@
+ <!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Your CSS styles */
+        	body{
+				padding:0;
+				margin:0;
+				display: flex;
+				flex-direction: column;
+				justify-content:center;
+				align-items: center;
+				height:100vh;
+				
+				background:#f2f2f2;
+				background-size: cover;
+			}
+		.form{
+				position: relative;
+				width: 300px;
+				height:auto;
+						display: flex;
+				flex-direction: column;
+				justify-content:center;
+				align-items: center;
+				background: #fff;
+				padding:10px;
+					border-radius:10px;
+				
+			}
+		.form > form > input{
+				width:95%;
+				padding:10px;
+				background:none;
+				border: none;
+				background:#f2f2f2;
+			  margin-top: 5px;
+			  outline:none;
+			  border-radius:5px;
+			}
+		.form > form > .pass > input{
+				width:95%;
+				padding:10px;
+				background:none;
+				border: none;
+				background:#f2f2f2;
+			  margin-top: 5px;
+			  outline:none;
+			  border-radius:5px;
+			}
+					.form > form > .pass > input[type="button"] {
+						width: 30%;
+					}
+				.form > form > .pass >		.active{
+						  background:;
+					color:#fff;
+					}
+			.pass{
+				display: flex;
+				gap:5px;
+			
+			}
+			
+			
+			.flex{
+				display: flex;
+				gap:10px;
+			}
+			.flex > input {
+				width:120px;
+				padding:10px;
+				border: none;
+		   background:#f2f2f2;
+		   border-radius:5px;
+			}
+		form >	.login{
+			
+				
+				
+				text-decoration: none;
+				color:rgba(76,149,255,1);
+				
+				
+			}
+			.head{
+				position: relative;
+				padding:10px;
+				font-weight:400;
+			}
+		
+			.head:before{
+				content:'';
+				position: absolute;
+				bottom:0;
+				font-size: 8px;
+				
+			}
+		.form > form >	.bnt{
+			color:#fff;
+			border-radius:10px;
+		  background:#384555;
+			}
+			
+.alert {
+	position:fixed;
+top:0;
+  padding: 20px;
+  background-color: #f44336; 
+  color: white;
+  margin-bottom: 15px;
+
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+	.intro{
+				display: flex;
+				align-items: center;
+			}
+			.detail{
+				display: flex;
+				flex-direction: column;
+				
+			}
+			.detail > b{
+			font-size: 19px;
+			padding:4px;
+			}
+			.detail > span{
+				font-size:11px;
+			}
+			textarea{
+				margin-top:5px;
+				padding:10px;
+				width:95%;
+				height:50px;
+				border: none;
+				background:#f2f2f2;
+		   border-radius:5px;
+		   position: relative;
+		  
+			}
+			form > i{
+				font-size:7px;
+				position:absolute;
+				padding:5px;
+				margin-top:-10px;
+			}
+	.alert{
+				font-size:11px;
+				padding:10px;
+			border-left: 3px solid #E68989;
+				color:#000;
+			
+				display: none;
+			}
+		
+    .drop{
+      list-style: none;
+      padding: 0;
+      background-color: #f2f2f2;
+      position:absolute;
+      width:150px;
+      
+      margin-top:-px;
+      border-top: none;
+      max-height: 0px;
+      border-radius:10px;
+      overflow-y: auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      transition: max-height 0.3s ease; /* Add transition for smooth animation */
+    }
+    .drop:before {
+    	content:"Your role";
+    	position: relative;
+    top:15px;
+    left:35px;
+    font-weight:bold;
+    padding:10px;
+    width:150px;
+    }
+
+    .drop.open {
+      max-height: 190px;
+    }
+
+   .drop > #suggestionList >  li {
+      padding: 5px;
+      cursor: pointer;
+      list-style: none;
+      font-sie:8px;
+      background:#fff;
+    }
+    ul{
+    	padding:5px;
+    	
+    }
+    </style>
+</head>
+
+<body>
+
+    <div class="form">
+        <div class="intro">
+            <div><img src="img/logo.jpg" width="40"></div>
+            <div class="detail">
+                <b>Unite with others</b>
+                <span>Share Your Exprience with anyone around the globe</span>
+            </div>
+           
+        </div>
+        
+       <div class="alert" id="alert">
+       	<b>Error message</b><br>
+       	Password is too weak. It should be at least " + minLength + " characters long.
+       	</div>
+        <form id="data-form">
+        	<input type="text" id="fletter" hidden>
+      <input type="text" id="username" placeholder="Username" required/>
+            
+             
+          
+          <textarea placeholder="Say Something about Yourself in 100 words...." id="bio" required></textarea>
+             
+           <input type="number" id="phone" placeholder="Phone Number" />
+           
+           <div class="pass"> <input type="password" id="pass" placeholder="Password" required /><input type="button" onclick="Showpass()" id="showpass"value="Show"></div><br>
+          
+            <input type="submit" value="Create Account" id="CreateAccount" class="bnt" />
+        </form>
+        <span>Already have an account? <a href="signup.html" class="login">Login</a></span>
+    </div>
+
+  <script>
+      function Showpass(){
+    	var pass = document.getElementById("pass");
+    		var btn = document.getElementById("showpass");
+    	if(pass.type == "password"){
+    		btn.value="Hide";
+    		pass.type = "text";
+    		btn.style.background="#384555";
+    		btn.style.color="#fff";
+    	}else{
+    			btn.value="Show";
+    		pass.type = "password";
+    		btn.style.background="#f2f2f2";
+    		btn.style.color="#000";
+    	}
+      
+      }
+      
+  </script>
+    <script>
+    	// Function to check if a password is strong or weak
+function isPasswordStrong(pass) {
+  // Check if the password has at least one uppercase letter, one lowercase letter, and one digit
+  const hasUppercase = /[A-Z]/.test(pass);
+  const hasLowercase = /[a-z]/.test(pass);
+  const hasDigit = /\d/.test(pass);
+
+  const suggestions = [];
+
+  if (!hasUppercase) {
+    suggestions.push("Include at least one uppercase letter.");
+  }
+  if (!hasLowercase) {
+    suggestions.push("Include at least one lowercase letter.");
+  }
+  if (!hasDigit) {
+    suggestions.push("Include at least one digit.");
+  }
+
+  if (suggestions.length === 0) {
+    return "Password is strong!";
+  } else {
+    return "Password is weak. Suggestions: " + suggestions.join(" ");
+  }
+}
+
+// Generate a random password of length 6
+const randomPassword = //generateRandomPassword(6);
+//alert("Generated Password:"+randomPassword);
+
+// Check if the generated password is strong or weak
+//const passwordStrength = isPasswordStrong(randomPassword);
+//alert(passwordStrength);
+
+
+    	
+    	
+    	
+     	$(document).ready(function() {
+    // Define your Firebase project URL
+    var firebaseDatabaseURL = 'https://unitemedia-96620-default-rtdb.firebaseio.com/';
+
+    var Fletter; // Declare Fletter outside the function
+
+    // Function to add data to Firebase
+    function addData(username, bg, Fletter,bio,phone, id, status, pass) {
+    	
+    	
+        $.ajax({
+            url: firebaseDatabaseURL + "users.json",
+            type: "POST",
+            data: JSON.stringify({
+                username: username,
+                bg: bg,
+                fletter: Fletter, // Use Fletter instead of Fletter
+                bio: bio,
+               
+                phone: phone,
+                id: id,
+                status: status,
+                pass: pass
+            }),
+            contentType: "application/json",
+            success: function(response) {
+                $("#alert").text("Account Created by: " + username);
+                $("#alert").css({
+                    "border": "3px solid #58BC77"
+                });
+                $("#CreateAccount").val("Your Account is ready");
+                alert(username + " Account Created");
+
+                 location.assign("signup.html");
+            },
+            error: function(error) {
+                console.error("Error adding data:", error);
+                
+                
+                alert(error);
+            }
+        });
+    }
+
+    // Submit form to add data
+    $("#data-form").submit(function(event) {
+        event.preventDefault();
+        var username = $("#username").val();
+        var phone = $("#phone").val();
+        var pass = $("#pass").val();
+        var bio = $("#bio").val();
+    //    var role= $("#suggestionInput").val();
+        
+isPasswordStrong(pass);
+        const id = Math.floor(Math.random() * 1000000);
+        const minLength = 6; // Minimum length requirement
+
+        if (pass.length < minLength) {
+            $("#alert").text("Password is too weak. It should be at least " + minLength + " characters long");
+            $("#alert").css({
+                "display": "block"
+            });
+
+            setTimeout(function() {
+                $("#alert").css({
+                    "display": "none"
+                });
+                $("#pass").css({
+                    "border": "none"
+                });
+            }, 2000);
+        } else {
+            $("#CreateAccount").val("Working on it....");
+
+            function getRandomColor() {
+                const letters = '0123456789ABCDEF';
+                let color = '#';
+                for (let i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
+
+            function generateProfilePicture(name) {
+                if (name.length > 0) {
+                    const firstLetter = name[0].toUpperCase();
+                    Fletter = firstLetter; // Assign firstLetter to Fletter
+                    $("#fletter").val(Fletter); // Set the value of the fletter element
+                }
+
+                const randomBackgroundColor = getRandomColor();
+                localStorage.setItem('bg', randomBackgroundColor);
+            }
+
+            var bg = localStorage.getItem('bg');
+            generateProfilePicture(username);
+
+localStorage.setItem('Fletter',Fletter); 
+var status = "Online";
+            // Now, you can use Fletter outside the function
+            addData(username, bg,Fletter,bio, phone, id, status, pass);
+        }
+    });
+});
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head><meta name=viewport content="width=device-width, user-scalable=yes" />
+   <title> Try It Yourself </title>
+   <style type="text/css">
+      * {
+         box-sizing: border-box;
+      }
+      html, body {
+         margin: 0;
+         padding: 0;
+      }
+      .container {
+        
+      }
+      input[type="radio"] {
+         display: none; /* hide the radio button because it does not look beautiful */
+      }
+      .container {
+        display: flex;
+      }
+      label {
+         display: block;
+         padding: 10px;
+         border-bottom: 1px solid #57E2FF;
+         width: 100px;
+       text-align: center;
+        
+      }
+      label:hover{
+      	background: #EBE9E9;color: #000;
+      	border-top-left-radius: 7px;
+      	border-top-right-radius: 7px;
+      	font-style: bold;
+      	text-align: center;
+      }
+      .accordion:last-child > label, .accordion:last-child > .accordion-content {
+         border: none;
+      }
+      .accordion-content {
+    background: #E0E0E0;color: #fff;
+   
+         position: absolute;
+         left:0;
+         width: 100%;
+         padding: 15px;
+         display: none;
+      }
+      /* select the accordion content when the label is clicked on or the input is checked */
+      input:checked ~ .accordion-content {
+         display: block;
+      }
+      .name{
+      	position: absolute;
+      	font-size: 6vh;
+      	family:myfont;
+      }
+      .bnt{
+      	width: 100%;
+      	color: #fff;
+      	background: transparent;
+      	border: 1px solid #14C3FF;
+      	border-radius: 9px;
+      	
+      }
+      .left{
+      	float: left;
+      }
+      .header img{
+     border-radius: 9px;
+   
+      }
+      .accordion-content img{
+      	box-shadow: inset 9px 10px 9px 10px #555;
+      	width
+      }
+      .bord{
+      	background: url("qu.png");
+	width: 100%;
+	height: 300px;
+	position: absolute;
+	left:0;
+	top:0;
+	background-repeat: no-repeat;
+	background-size: 100%;
+      }
+      @font-face{font-family:myfont;src:url(digital.ttf)}
+      .about{
+      	background: #fff;
+      	position: absolute;
+	left:0;
+	top:0;
+	color: #000;
+      }
+      .about img{
+      	border-radius: 15px;
+      }
+      .fact{
+      	background: url("fact.png");
+	width: 100%;
+	height: 300px;
+	position: absolute;
+	left:0;
+	top:0;
+	background-repeat: no-repeat;
+	background-size: 100%;
+      }
+      .lightbox {
+         display: table; /* helps us center the lightbox-content */background: #fff;
+   
+         opacity: 0; /* fully transparent (hidden) */
+         z-index: -1; /* put the lightbox layer below the body */top: -100%; /* position the lightbox above the top edge */
+         left: 0;
+         transition-duration: 1s; /* duration of the fade in effect */
+         color:#000;
+         /* make the lightbox occupy the entire page */
+         position: fixed;
+         top: 0;
+         left: 0;
+         width: 100%;
+         height: 100%;
+      /* black with 0.7 opacity */
+      }
+      .lightbox:target {
+         opacity: 1; /* fully opaque (visible) */
+         z-index: 1; /* put the lightbox layer above the body */
+      }
+      .lightbox-content {
+        padding:5px; margin-top:5px; width:auto; height:100%; overflow:scroll; 
+
+      }
+      .close {
+         /* position the CLOSE button to the top-right corner */ color: #000;
+       float: right;
+         /* style the close button */
+         font-size: 20px;
+         font-weight: 300;
+         text-decoration: none;
+         color: white;
+      }
+      
+      /* make the image responsive */
+    
+      .bac{
+      	 height: 100%;
+      }
+       .tab{
+      	width: 100%;
+      	height: auto;
+      	border: none;
+      	border-radius: 9px;
+      	background: #fff;
+      	color: #000;
+      }
+      .nz{ 
+      float: left;
+      }
+      a{
+      	text-decoration: none;
+      }
+   </style>
+</head>
+<body>   <div class="header">
+<img src="Es.png" width="50"><b class="name">Quotes </b></div>
+   <div class="container">
+   
+      <div class="accordion">
+         <input type="radio" name="accordion" id="accordion1" checked>
+         <label for="accordion1">Home</label>
+         <div class="accordion-content"><br><br><br><br><br>
+        <br><br><br><br><br>
+     <br><br><br><br><br>
+     <br>
+            
+           
+           
+           	
+         </div>
+      </div>
+      
+      <div class="accordion">
+         <input type="radio" name="accordion" id="accordion2">
+         <label for="accordion2">Facts </label>
+         <div class="accordion-content">
+       <div class="fact"></div><br><br><br><br><br>
+        <br><br><br><br><br>
+     <br><br><br><br><br>
+     
+           	<button class="bnt"><div class="left"><img src="apk.png" width="35">How to turn html to app</div></button>
+           			<button class="bnt"><div class="left"><img src="apk.png" width="35">How to turn html to app</div></button>
+           				<button class="bnt"><div class="left"><img src="apk.png" width="35">How to turn html to app</div></button>
+           				
+           					<button class="bnt"><div class="left"><img src="apk.png" width="35">How to turn html to app</div></button>
+           					
+           						<button class="bnt"><div class="left"><img src="apk.png" width="35">How to turn html to app</div></button>
+         </div>
+      </div>
+      
+      <div class="accordion">
+         <input type="radio" name="accordion" id="accordion3">
+         <label for="accordion3"> About us </label>   <div class="accordion-content"><div class="about">
+      <center>
+             <img src="ow.png" width="40%" ><br><b>info & idea: by Jonathan Corey
+           	<br>Designed & creatd: by Poloko Pule<br>
+           		Quote writers: Jay Shetty & Albert Einstein
+           	</center><br><li>contact us if you need any help</li>
+           		<li>Click the following buttons to inbox us</li>
+           		
+   </div>
+</body>
+</html>

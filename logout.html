@@ -1,0 +1,26 @@
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		    	 
+
+<script>
+	$(document).ready(function() {
+   
+    
+        var userId = localStorage.getItem('id');
+        
+        localStorage.removeItem('id')
+        // Check if the user is logged in
+        if (userId) {
+            location.assign("index.html");
+        } else {
+            // Handle the case where the user is not logged in
+            
+            localStorage.removeItem('id')
+            location.assign("signup.html");
+        }
+    
+
+    
+
+});
+	
+	</script>

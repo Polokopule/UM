@@ -1,0 +1,323 @@
+<html>
+		<script>
+		 
+
+		</script>
+	<head>
+		    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		    	    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<style>/* Your CSS styles */
+        	body{
+				padding:0;
+				margin:0;
+				display: flex;
+				flex-direction: column;
+				justify-content:center;
+				align-items: center;
+				height:100vh;
+				
+				background:#f2f2f2;
+				background-size: cover;
+			}
+		.form{
+				position: relative;
+				width: 300px;
+				height:auto;
+						display: flex;
+				flex-direction: column;
+				justify-content:center;
+				align-items: center;
+				background: #fff;
+				padding:10px;
+				border-radius:10px;
+				
+			}
+		.form > form > input{
+				width:280px;
+				padding:10px;
+				background:none;
+				border: none;
+				background:#f2f2f2;
+			  margin-top: 10px;
+			  outline:none;
+			  border-radius:5px;
+			}
+			
+			.flex{
+				display: flex;
+				gap:10px;
+			}
+			.flex > input {
+				width: 140px;
+				padding:10px;
+				border: none;
+		   background:#f2f2f2;
+		   border-radius:5px;
+			}
+		form >	.login{
+			
+				
+				
+				text-decoration: none;
+				color:rgba(76,149,255,1);
+				
+				
+			}
+			.head{
+				position: relative;
+				padding:10px;
+				font-weight:400;
+			}
+		
+			.head:before{
+				content:'';
+				position: absolute;
+				bottom:0;
+				font-size: 8px;
+				
+			}
+		.form > form >	.bnt{
+			color:#fff;
+			border-radius:10px;
+		  background:#384555;
+			}
+			
+.alert {
+	position:fixed;
+top:0;
+  padding: 20px;
+  background-color: #f44336; 
+  color: white;
+  margin-bottom: 15px;
+
+}
+
+/* The close button */
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+/* When moving the mouse over the close button */
+.closebtn:hover {
+  color: black;
+}
+	.intro{
+				display: flex;
+				align-items: center;
+			}
+			.detail{
+				display: flex;
+				flex-direction: column;
+				
+			}
+			.detail > b{
+			font-size: 19px;
+			padding:4px;
+			}
+			.detail > span{
+				font-size:11px;
+			}
+			 	.alertBox{
+  		width:300px;
+  		padding:10px;
+  		box-shadow:1px 50px 100px 505px rgba(0,0,0,0.4);
+  		border-radius:5px;
+  		position: fixed;
+  		top:30%;
+  		background:#fff;
+  		left:5%;
+  		z-index:2;
+  	}
+  	.alertMsg{
+  		display: flex;
+  		flex-direction: column;
+  		padding:7px;
+  		width:300px;
+  	}
+  	.alertMsg > b{
+  		font-size: 19px;
+  		
+  	}
+  	.buttonsChoose {
+  		display: flex;
+  		gap:10px;
+  	}
+  	.buttonsChoose > input {
+  		padding:9px;
+  		border: none;
+  		border-radius:5px;
+  	}
+  	.buttonsChoose > input:first-child{
+  		background: #384555;
+  		color:#fff;
+  	}
+			
+			</style>
+		</head>
+		</html>
+		<body id="alert">
+		
+		  <div class="form">
+        <div class="intro">
+            <div><img src="img/logo.jpg" width="40"></div>
+            <div class="detail">
+                <b>Welcome back</b>
+                <span>share exprince and your opinion with other uniters</span>
+            </div>
+        </div>
+        <form id="data-form">
+           
+            <input type="number" id="phone" placeholder="Phone Number" />
+            <input type="password" id="pass" placeholder="Password" required />
+            <input type="submit" value="login" class="bnt"  id="create" required/>
+        </form>
+        <span>Don`t have  account? <a href="signin.html" class="login">Create account</a></span>
+    </div>
+
+			 
+    <script>
+    	
+    	
+   $(document).ready(function() {
+            // Define your Firebase project URL
+            
+                    
+            var firebaseDatabaseURL = 'https://unitemedia-96620-default-rtdb.firebaseio.com/';
+            // Function to add data to Firebase
+             function login(phone,pass) {
+             	  $("#create").empty();
+                  $("#create").val("searching for your account....");     
+                $.ajax({
+                    url: firebaseDatabaseURL + "users.json",
+                    type: "GET",
+                    success: function(data) {
+                        
+                     
+                 var userId = localStorage.getItem('id'); // Get the user's ID from local storage
+        
+        // Check if the user is logged in
+       
+            var updateData = { status: 'online' }; // Define the data to update
+            
+            $.ajax({
+                url: firebaseDatabaseURL + "users/" + userId + ".json",
+                type: "PATCH", // Use PATCH to update specific fields
+                data: JSON.stringify(updateData),
+                success: function() {
+           alert("your online")         
+                    
+                                },
+                error: function(error) {
+                    console.error("Error updating data:", error);
+                    // Handle error as needed
+                }
+            });
+        
+        
+
+                        // Loop through the data and display it
+                        $.each(data, function(key, value) {
+                            var ph = value.phone;
+                            var pss = value.pass;
+             var nm = value.username;
+             
+                var letter = value.fletter;
+                     
+                  var id= value.id;          
+                   
+                            if(ph == phone && pss == pass){
+                     	                	
+       var sid = localStorage.setItem('id',id);
+            localStorage.setItem('Fletter',letter); 
+           
+  var loggedUser= localStorage.setItem('user',nm);      
+                          location.assign("index.html");  	
+                            }else{
+                            //account not found refresh the page or try again, call the alert box
+                        AreYouSureAcc();
+                            
+    }
+    
+    
+           });
+                    },
+                    error: function(error) {
+                        console.error("Error retrieving data:", error);
+                        
+                       //Something went wrong while refrirving data, show alert
+                       
+                        AreYouSure();
+                        $("#create").empty();
+                  $("#create").val("login");     
+                    }
+                });
+            }
+
+                       $("#data-form").submit(function(event) {
+                event.preventDefault();
+              
+                
+                var phone = $("#phone").val();
+                
+                var pass = $("#pass").val();
+                login(phone, pass);
+            });
+
+        });
+        
+        
+	function AreYouSure(){
+		var alert = document.getElementById("alert");
+		var html = `
+		<div class="alertBox" id="thisBox">
+			<div class="alertMsg">
+			<b>Something went Wrong</b>
+			<span>Your Internet connection is off or you may have insufficent data balance, try turning your airplane mode off and refresh the page</span>
+			</div>
+			<div class="buttonsChoose">
+				
+					<input type="button" onclick="cancel()"value="Refresh now">
+			</div>
+			</div>
+		`;
+		alert.innerHTML+=html;
+	}
+	
+	       
+	function AreYouSureAcc(){
+		var alert = document.getElementById("alert");
+		var html = `
+		<div class="alertBox" id="thisBox">
+			<div class="alertMsg">
+			<b>Account not found!</b>
+			<span>
+				We could not find any account witg matching password or phone number,try again or refresh the page
+			</span>
+			</div>
+			<div class="buttonsChoose">
+				
+					<input type="button" onclick="cancel()"value="Refresh now">
+			</div>
+			</div>
+		`;
+		alert.innerHTML+=html;
+	}
+	
+	
+	function cancel(){
+		
+		location.assign("signup.html")//refresh
+		
+		var thisBox = document.getElementById("thisBox");
+		thisBox.style.display="none";
+	}
+	
+    </script>
+			</body>

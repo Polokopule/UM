@@ -1,0 +1,178 @@
+Certainly, here's the HTML template for each group integrated into the JavaScript code:
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<style>
+					
+					#createNew{
+						display: flex;
+						flex-direction: column;
+						
+					}
+					#createNew > input{
+						background:#f2f2f2;
+						
+					}
+					.groupChat{
+					    display:none;
+					}
+					.groupChat:target {
+					    display: block;
+					    position:fixed;
+					    top:0;
+					    left:0;
+					    width:100%;
+					    height:100vh;
+					    z-index:2;
+					    background:#fff;
+					}
+					
+		  .person{
+		  	padding:5px;
+		  	width:100%;
+		  	position: fixed;
+		  	top:0;
+		  	left:0;
+		  	width:100%;
+		
+		  	display: flex;
+		  }
+		   .person > .Gprofile{
+		   	width: 25px;
+		   	height:25px;
+		   	 border-radius: 100%;
+		   	 
+		   	background:#999;
+		   }
+		    .Udetails{
+		    	display: flex;
+		    	flex-direction: column;
+		    	padding:	6px;
+		    	margin-top:-5px;
+		    	color:#fff;
+		    }
+		    .Udetails > span{
+		    	font-size:8px;
+		    }
+		    .Udetails > b{
+		    	font-size: 12px;
+		    }
+				.mForm{
+					    position:fixed;
+					    z-index:1;
+					    bottom:0;
+					}
+					
+					</style>
+	
+
+	
+    <!-- Add your head elements, such as styles and scripts -->
+</head>
+<body>
+    <div id="listg">
+        <!-- Groups will be dynamically added here -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Define your Firebase project URL
+            var UnitersURL = 'https://unitemedia-96620-default-rtdb.firebaseio.com/';
+
+            // Define user-specific variables
+            var CId = localStorage.getItem("id");
+            var byUser = localStorage.getItem("user");
+            var byBg = localStorage.getItem("bg");
+
+            $.ajax({
+                url: UnitersURL + "JoinUsers.json",
+                type: "GET",
+                success: function(data) {
+                    $("#listg").empty();
+                    $.each(data, function(key, value) {
+                        var GbyjoinedId = value.GbyjoinedId;
+                        var GName = value.GName;
+                        var GId = value.GId;
+                        var link = "group/" + GName + "/id=" + GId;
+
+                        var htm = `
+                            <div class="frcard">
+                                <div class="frPp">
+                                    <b></b>
+                                </div>
+                                <div class="frDetail">
+                                    <a href='#${link}'> View Profile</a>
+                                    <b>${GName}</b><br>
+                                    ${value.status} - ${GId}
+                                </div>
+                            </div>
+                            <div id="${link}" class="groupChat">
+                                <div class="person" style="background:${value.GbyBg};">
+                                    <div class="Gprofile"></div>
+                                    <div class="Udetails">
+                                        <b>${GName}</b>
+                                        <span>You are a ${value.status} in this group</span>
+                                    </div>
+                                </div><br><br>
+                                <form id="Send${GId}" class="mForm" data-group-id="${GId}">
+                                    <input type="text" placeholder="Type message..." id="Msg${GId}">
+                                    <button class="send-button">Send</button>
+                                </form>
+                            </div>
+                        `;
+
+                        // Attach a click event handler to the "Send" button for each group
+                        $(".mForm[data-group-id='" + GId + "'] .send-button").click(function(event) {
+                            event.preventDefault();
+                            var form = $(this).closest(".mForm");
+                            var msgId = Math.floor(Math.random() * 100000);
+                            var msg = form.find("input[type='text']").val();
+
+                            // Retrieve group-specific data
+                            var toGroupName = GName;
+                            var toGroupId = GId;
+
+                            $.ajax({
+                                url: UnitersURL + "messages.json",
+                                type: "POST",
+                                data: JSON.stringify({
+                                    msg: msg,
+                                    byUser: byUser,
+                                    byId: CId, // Assuming CId is the user's ID
+                                    byBg: byBg,
+                                    toGroupName: toGroupName,
+                                    toGroupId: toGroupId,
+                                    msgId: msgId
+                                }),
+                                contentType: "application/json",
+                                success: function(response) {
+                                    alert("Message sent...");
+                                },
+                                error: function(error) {
+                                    console.error("Error sending", error);
+                                    alert(error);
+                                }
+                            });
+                        });
+
+                        if ((GbyjoinedId == CId && value.status == "member") ||
+                            (GbyjoinedId == CId || value.GbyId == CId && value.status == "Admin")) {
+                            $("#listg").append(htm);
+                        }
+                    });
+                },
+                error: function(error) {
+                    console.error("Error retrieving data:", error);
+                    alert("Error getting groups you created/joined");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+```
+
+This code includes the HTML structure and integrates it with the JavaScript logic. Make sure to adjust the HTML and JavaScript code to match your specific use case and styling requirements.
