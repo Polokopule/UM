@@ -19,7 +19,7 @@ function SendMsg(id, GName) {
         contentType: "application/json",
         success: function(response) {
             alert("Message sent");
-              input.value="";
+              document.getElementById(id).value="";
         },
         error: function(error) {
             console.error("Error adding data:", error);
