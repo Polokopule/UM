@@ -123,7 +123,13 @@ $(document).ready(function() {
                                         $("#Msg" + GId).append(chat);
                                         
                                         
-                                        }else{
+                                        }
+                                       if (value.GbyId === cId) {
+                    if (!joinedGIds.includes(GId)) {
+                        // Add this GId to the list of joined groups
+                        joinedGIds.push(GId);
+
+                                       
                                            
                         var not = `
                         <div class="frcard">
