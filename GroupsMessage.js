@@ -123,7 +123,23 @@ $(document).ready(function() {
                                         $("#Msg" + GId).append(chat);
                                         
                                         
-                                        }
+                                        }else{
+                                           
+                        var not = `
+                        <div class="frcard">
+                            <div class="frPp">
+                                <img src="9t.png" alt="">
+                            </div>
+                            <div class="frDetail">
+                                <a onclick="alert("Join This group first,Goto join group and enter the Id and the pin")"> Open Group</a>
+                                <b>${gN}</b><br>
+                                groupId: ${GId}<br>
+                                Pin: ${value.GPin}
+                                <br>Your not a member/Admin in this group
+                            </div>
+                        </div>`;
+                                           $("#listg").append(not);
+                                    }
                                                                            
                                     
                                 });
